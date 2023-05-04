@@ -8,5 +8,6 @@ import { element } from "./routes/Routes";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={element}></RouterProvider>
+    {/* <App /> */}
   </React.StrictMode>
 );

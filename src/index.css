@@ -31,10 +31,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  /* display: flex; */
 
-  min-width: 320px;
-  min-height: 100vh;
+  /* min-width: 320px;
+  min-height: 100vh; */
 }
 
 h1 {
