@@ -9,16 +9,16 @@ const Verification = () => {
             <h1 className="text-green-500">
               Food <span className="text-orange-500">King</span>
             </h1>
-            <h3 className="mt-5 text-2xl text-green-500">
-              Please Confirm your Email 💯🔴
+            <h3 className="mt-5 text-2xl text-green-500 text-center">
+              Congratulations, your account has been verified 💯🔴
             </h3>
             <p className="text-center mt-5">
-              An Email has been sent to the{" "}
-              <span className="text-orange-500">Email Address</span> you used to
-              register an Account for this site, Please go check it and{" "}
-              <span className="text-orange-500">follow the Link</span> to
-              complete your{" "}
-              <span className="text-orange-500">Registeration</span> 💙
+              You can now access all of the features and benefits available to
+              verified users.{" "}
+              <span className="text-orange-500">
+                {" "}
+                Log in to your account to get started 💙{" "}
+              </span>
             </p>
           </div>
         </div>
