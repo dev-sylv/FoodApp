@@ -4,13 +4,34 @@ import { UseAppDispatch, useAppSelector } from "../../Global/Store";
 import { UsersRegistration } from "../../Utils/APIs";
 import axios from "axios";
 import { login } from "../../Global/ReduxState";
+import * as yup from "yup";
 import Swal from "sweetalert2";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 
 const Register = () => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const userSchema = yup
+    .object({
+      name: yup.string().required("please enter a name"),
+      email: yup.string().required("please enter an email"),
+      password: yup.string().required("please enter a password"),
+      confirmPassword: yup
+        .string()
+        .oneOf([yup.ref("password")], "passwords must match")
+        .required("please confirm your password"),
+    })
+    .required();
+  type formData = yup.InferType<typeof userSchema>;
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    reset,
+    register,
+  } = useForm<formData>({
+    resolver: yupResolver(userSchema),
+  });
 
   // Bringing in redux states:
   const dispatch = UseAppDispatch();
@@ -18,46 +39,35 @@ const Register = () => {
 
   const CurrentUser = useAppSelector((state: any) => state?.user);
 
-  const Endpoint = "http://localhost:1511/api/users";
+  const CreateUser = useMutation({
+    mutationKey: ["New user"],
+    mutationFn: UsersRegistration,
 
-  // Consuming Auth Api:
-  const UsersRegistration = async ({
-    name,
-    email,
-    password,
-    confirmPassword,
-  }: any) => {
-    return await axios
-      .post(`${Endpoint}/registeruser`, {
-        name,
-        email,
-        password,
-        confirmPassword,
-      })
-      .then((res) => {
-        dispatch(login(res.data));
-        Swal.fire({
-          title: "User registered sucessfully",
-          html: "redirecting to email",
-          timer: 1000,
-          timerProgressBar: true,
+    onSuccess: (res) => {
+      dispatch(login(res.data.data));
+      // console.log(res.data.data);
+      Swal.fire({
+        title: "User registered sucessfully",
+        html: "redirecting to email",
+        timer: 2000,
+        timerProgressBar: true,
 
-          willClose: () => {
-            navigate("/redirect-to-email");
-          },
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+        willClose: () => {
+          navigate("/redirect-to-email");
+        },
       });
-  };
-  console.log("This is user: ", CurrentUser);
+    },
+  });
+
+  const UserReg = handleSubmit(async (data: any) => {
+    CreateUser.mutate(data);
+  });
 
   return (
     <div className="w-full h-screen bg-green-500 flex justify-center items-center">
       <div className="border shadow-2xl py-10 flex flex-col justify-center items-center w-6/12">
         <h4 className="text-white font-bold text-4xl mb-5">Sign Up</h4>
-        <div className="w-full max-w-xs" onSubmit={UsersRegistration}>
+        <div className="w-full max-w-xs" onSubmit={UserReg}>
           <form className=" ">
             <div className="mb-4">
               <label className="block text-white text-sm font-bold mb-2">
@@ -65,12 +75,9 @@ const Register = () => {
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                type="email"
+                type="text"
                 placeholder="Enter your name"
-                value={name}
-                onChange={(e: any) => {
-                  setName(e.target.value);
-                }}
+                {...register("name")}
               />
             </div>
 
@@ -82,10 +89,7 @@ const Register = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="email"
                 placeholder="Enter your email"
-                value={email}
-                onChange={(e: any) => {
-                  setEmail(e.target.value);
-                }}
+                {...register("email")}
               />
             </div>
 
@@ -97,10 +101,7 @@ const Register = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 type="password"
                 placeholder="Enter your password"
-                value={password}
-                onChange={(e: any) => {
-                  setPassword(e.target.value);
-                }}
+                {...register("password")}
               />
               {/* <p className="text-red-500 text-xs italic">
                 Please enter your password.
@@ -115,10 +116,7 @@ const Register = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 type="password"
                 placeholder="Confirm your password"
-                value={confirmPassword}
-                onChange={(e: any) => {
-                  setConfirmPassword(e.target.value);
-                }}
+                {...register("confirmPassword")}
               />
               {/* <p className="text-red-500 text-xs italic">
                 Please enter your password.
