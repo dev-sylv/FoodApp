@@ -4,14 +4,14 @@ import { NavLink } from "react-router-dom";
 const Register = () => {
   return (
     <div className="w-full h-screen bg-green-500 flex justify-center items-center">
-      <div className="pd-40 flex flex-col justify-center items-center w-54 ">
-        <h4>Sign Up</h4>
+      <div className="border shadow-2xl py-10 flex flex-col justify-center items-center w-6/12 ">
+        <h4 className="text-white font-bold text-4xl">Sign Up</h4>
 
-        <div className="w-300 bg-transparent h-40 pl-32 border-spacing-x-4 text-white">
+        <div className="w-80 outline-none rounded-xl h-10 bg-transparent px-5 border-2 text-white">
           <input type="text" placeholder="Enter your name" />
         </div>
 
-        <div className="w-300 bg-transparent h-40 pl-32 border-spacing-x-4 text-white">
+        {/* <div className="w-300 bg-transparent h-40 pl-32 border-spacing-x-4 text-white">
           <input type="email" placeholder="Enter a valid email" />
         </div>
 
@@ -37,7 +37,7 @@ const Register = () => {
           <NavLink to="/login-user">
             <b className="text-white cursor-pointer">Log in here</b>
           </NavLink>
-        </div>
+        </div> */}
       </div>
     </div>
   );
