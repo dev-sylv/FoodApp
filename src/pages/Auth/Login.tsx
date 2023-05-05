@@ -32,11 +32,13 @@ const Login = () => {
               </p> */}
             </div>
             <div className="flex items-center justify-between">
-              <button
-                className="bg-orange-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="button">
-                Sign In
-              </button>
+              <NavLink to="/user-dashboard">
+                <button
+                  className="bg-orange-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="button">
+                  Sign In
+                </button>
+              </NavLink>
               <a
                 className="inline-block align-baseline font-bold text-base text-orange-500 hover:text-blue-800"
                 href="#">
