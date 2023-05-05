@@ -1,7 +1,14 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { NavLink, useParams } from "react-router-dom";
+import { UserVerification } from "../../Utils/APIs";
 
 const Verification = () => {
+  const { id }: any = useParams();
+  console.log("user id: ", id);
+
+  useEffect(() => {
+    UserVerification(id);
+  });
   return (
     <div>
       <div className="w-full h-screen  flex justify-center items-center">
