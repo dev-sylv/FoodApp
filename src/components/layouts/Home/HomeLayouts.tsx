@@ -5,7 +5,6 @@ import { Outlet } from "react-router-dom";
 const HomeLayouts = () => {
   return (
     <div>
-      <Header />
       <Outlet />
     </div>
   );

@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "herobg": "url('../src/assets/carousel-3.jpg')"
+      }
+    },
   },
   plugins: [],
 }
