@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Register = () => {
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+
+  // Bringing in redux states:
+
   return (
     <div className="w-full h-screen bg-green-500 flex justify-center items-center">
       <div className="border shadow-2xl py-10 flex flex-col justify-center items-center w-6/12">
@@ -16,8 +23,13 @@ const Register = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="email"
                 placeholder="Enter your name"
+                value={name}
+                onChange={(e: any) => {
+                  setName(e.target.value);
+                }}
               />
             </div>
+
             <div className="mb-4">
               <label className="block text-white text-sm font-bold mb-2">
                 Email
@@ -26,6 +38,10 @@ const Register = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e: any) => {
+                  setEmail(e.target.value);
+                }}
               />
             </div>
 
@@ -37,6 +53,10 @@ const Register = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 type="password"
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e: any) => {
+                  setPassword(e.target.value);
+                }}
               />
               {/* <p className="text-red-500 text-xs italic">
                 Please enter your password.
@@ -51,11 +71,16 @@ const Register = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 type="password"
                 placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e: any) => {
+                  setConfirmPassword(e.target.value);
+                }}
               />
               {/* <p className="text-red-500 text-xs italic">
                 Please enter your password.
               </p> */}
             </div>
+
             <div className="flex items-center justify-between">
               <NavLink to="/redirect-to-email">
                 <button

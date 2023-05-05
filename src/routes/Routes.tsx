@@ -27,7 +27,7 @@ export const element = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/verify-user",
+    path: "/verify-user/:id/:token",
     element: <Verification />,
   },
   {
