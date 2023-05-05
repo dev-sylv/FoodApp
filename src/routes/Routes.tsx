@@ -2,9 +2,10 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { HomeScreen } from "../pages/LandingPages";
 import HomeLayouts from "../components/layouts/Home/HomeLayouts";
-import { Login, Register, Verification } from "../pages/Auth";
+import { Login, RedirectToEmail, Register, Verification } from "../pages/Auth";
 import { Dashboard } from "../components";
 import DashboardBody from "../pages/DashboardBody";
+import ForgotPassword from "../pages/Auth/ForgotPassword";
 
 export const element = createBrowserRouter([
   {
@@ -28,6 +29,14 @@ export const element = createBrowserRouter([
   {
     path: "/verify-user",
     element: <Verification />,
+  },
+  {
+    path: "/forget-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/redirect-to-email",
+    element: <RedirectToEmail />,
   },
   {
     path: "/user-dashboard",

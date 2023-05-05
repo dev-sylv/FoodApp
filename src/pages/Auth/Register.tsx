@@ -57,11 +57,13 @@ const Register = () => {
               </p> */}
             </div>
             <div className="flex items-center justify-between">
-              <button
-                className=" w-full bg-orange-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="button">
-                Sign In
-              </button>
+              <NavLink to="/redirect-to-email">
+                <button
+                  className=" w-full bg-orange-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="button">
+                  Sign In
+                </button>
+              </NavLink>
             </div>
           </form>
           <p className="text-center text-white mt-5 text-lg">

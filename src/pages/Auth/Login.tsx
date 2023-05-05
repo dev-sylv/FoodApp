@@ -41,7 +41,9 @@ const Login = () => {
                 className="inline-block align-baseline font-bold text-base text-orange-500 hover:text-blue-800"
                 href="#">
                 Forgot Password?{" "}
-                <span className="text-white cursor-pointer">click here</span>
+                <NavLink to="/forget-password">
+                  <span className="text-white cursor-pointer">click here</span>
+                </NavLink>
               </a>
             </div>
           </form>
