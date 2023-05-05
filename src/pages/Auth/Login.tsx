@@ -1,12 +1,75 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import * as yup from "yup";
+import Swal from "sweetalert2";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { NavLink, useNavigate } from "react-router-dom";
+import { UseAppDispatch } from "../../Global/Store";
+import { useMutation } from "@tanstack/react-query";
+import { UsersLogin } from "../../Utils/APIs";
+import { login } from "../../Global/ReduxState";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = UseAppDispatch();
+
+  const userSchema = yup
+    .object({
+      email: yup.string().required("please enter an email"),
+      password: yup.string().required("please enter a password"),
+    })
+    .required();
+  type formData = yup.InferType<typeof userSchema>;
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    reset,
+    register,
+  } = useForm<formData>({
+    resolver: yupResolver(userSchema),
+  });
+
+  const posting = useMutation({
+    mutationKey: ["current"],
+    mutationFn: UsersLogin,
+
+    onSuccess: (myData) => {
+      dispatch(login(myData.data));
+
+      Swal.fire({
+        title: "Login Successfull",
+        html: "Taking you to your dashboard",
+        timer: 1000,
+        timerProgressBar: true,
+
+        didOpen: () => {
+          Swal.showLoading();
+        },
+
+        willClose: () => {
+          navigate("/user-dashboard");
+        },
+      });
+    },
+    onError: (error: any) => {
+      Swal.fire({
+        title: "Registration failed",
+        text: "email or password incorrect",
+        icon: "error",
+      });
+    },
+  });
+
+  const Submit = handleSubmit(async (data) => {
+    posting.mutate(data);
+  });
+
   return (
     <div className="w-full h-screen bg-green-500 flex justify-center items-center">
       <div className="border shadow-2xl py-10 flex flex-col justify-center items-center w-6/12">
         <h4 className="text-white font-bold text-4xl mb-5">Login</h4>
-        <div className="w-full max-w-xs">
+        <div className="w-full max-w-xs" onSubmit={Submit}>
           <form className=" ">
             <div className="mb-4">
               <label className="block text-white text-sm font-bold mb-2">
@@ -16,6 +79,7 @@ const Login = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="email"
                 placeholder="Enter your email"
+                {...register("email")}
               />
             </div>
             <div className="mb-6">
@@ -26,19 +90,19 @@ const Login = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 type="password"
                 placeholder="Enter your password"
+                {...register("password")}
               />
               {/* <p className="text-red-500 text-xs italic">
                 Please enter your password.
               </p> */}
             </div>
             <div className="flex items-center justify-between">
-              <NavLink to="/user-dashboard">
-                <button
-                  className="bg-orange-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="button">
-                  Sign In
-                </button>
-              </NavLink>
+              <button
+                className="bg-orange-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit">
+                Sign In
+              </button>
+
               <a
                 className="inline-block align-baseline font-bold text-base text-orange-500 hover:text-blue-800"
                 href="#">

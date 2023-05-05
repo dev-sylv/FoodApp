@@ -55,6 +55,12 @@ const Register = () => {
         willClose: () => {
           navigate("/redirect-to-email");
         },
+      }).catch(() => {
+        Swal.fire({
+          title: "Registration failed",
+          text: "Something went wrong! .....Make sure you did the right thing",
+          icon: "error",
+        });
       });
     },
   });
