@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction } from "@reduxjs/toolkit/dist/createAction";
 
 import { UserData } from "./AllInterfaces";
 
@@ -9,9 +10,14 @@ const initialState = {
 const ReduxState = createSlice({
   name: "FoodAppAuth",
   initialState,
-  reducers: {},
+  reducers: {
+    login: (state, { payload }: PayloadAction<UserData>) => {
+      state.user = payload;
+    },
+    logout: (state) => (state.user = null),
+  },
 });
 
-export const {} = ReduxState.actions;
+export const { login, logout } = ReduxState.actions;
 
 export default ReduxState.reducer;
