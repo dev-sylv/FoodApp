@@ -17,7 +17,7 @@ export const UsersRegistration = async ({
       confirmPassword,
     })
     .then((res) => {
-      res.data;
+      return res.data;
     })
     .catch((err) => {
       console.log(err);
@@ -25,4 +25,22 @@ export const UsersRegistration = async ({
 };
 
 // Endpoint for users login:
-export 
+export const UsersLogin = async ({ email, password }: any) => {
+  return await axios
+    .post(`${Endpoint}/loginuser`, { email, password })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// Endpoint for users verification:
+export const UserVerification = async (id: string) => {
+  try {
+    return await axios.get(`${Endpoint}/${id}/verifyuser`);
+  } catch (error) {
+    console.log(error);
+  }
+};
