@@ -1,11 +1,16 @@
 import React from "react";
+import { BarChat, PieChart } from "../components";
 
 const DashboardBody = () => {
   return (
     <div className="w-[calc(100vw - 16rem)] h-screen flex justify-end ">
-      <div className="w-4/5 bg-green-500 pt-20">
-        <div>Firstpart</div>
-        <div>secondpart</div>
+      <div className="w-4/5 bg-green-500 pt-20 flex justify-between items-center">
+        <div className="bg-red-500 w-2/5 h-1/2">
+          <PieChart />
+        </div>
+        <div className="bg-yellow-500 w-2/4 h-1/2">
+          <BarChat />
+        </div>
       </div>
     </div>
   );
