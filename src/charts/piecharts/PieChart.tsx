@@ -225,7 +225,6 @@ const AllCost = [];
 const arra = (arr: any[]) => {
   return arr.map((el) => el?.cost).reduce((a, b) => a + b);
 };
-console.log("Cost in exes array: ", arra(Fam));
 
 AllCost?.push(
   arra(Fam),
@@ -234,7 +233,6 @@ AllCost?.push(
   arra(Cousins),
   arra(Coding)
 );
-console.log(AllCost);
 
 export const data = {
   labels: ["Cousins", "Coding", "Exes", "Friends", "Fam"],

@@ -1,5 +1,5 @@
 import React from "react";
-import { PieChart } from "../charts";
+import { Barchat, PieChart } from "../charts";
 
 const DashboardBody = () => {
   return (
@@ -8,7 +8,9 @@ const DashboardBody = () => {
         <div className="bg-red-500 w-2/5 h-1/2">
           <PieChart />
         </div>
-        <div className="bg-yellow-500 w-2/4 h-1/2"></div>
+        <div className="bg-yellow-500 w-2/4 h-1/2">
+          <Barchat />
+        </div>
       </div>
     </div>
   );
