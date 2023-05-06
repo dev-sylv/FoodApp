@@ -220,14 +220,28 @@ const Exes = [
   },
 ];
 
-const Array1 = Fam.map((el: any) => {});
+const AllCost = [];
+
+const arra = (arr: any[]) => {
+  return arr.map((el) => el?.cost).reduce((a, b) => a + b);
+};
+console.log("Cost in exes array: ", arra(Fam));
+
+AllCost?.push(
+  arra(Fam),
+  arra(Exes),
+  arra(Friends),
+  arra(Cousins),
+  arra(Coding)
+);
+console.log(AllCost);
 
 export const data = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  labels: ["Cousins", "Coding", "Exes", "Friends", "Fam"],
   datasets: [
     {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
+      label: "Costs",
+      data: AllCost.map((el) => el),
       backgroundColor: [
         "rgba(255, 99, 132, 0.2)",
         "rgba(54, 162, 235, 0.2)",
