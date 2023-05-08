@@ -5,7 +5,7 @@ import { Header } from "../../components";
 const Hero = () => {
   return (
     <div className="w-full bg-herobg h-screen flex flex-col  items-center">
-      <div className="bg-black bg-opacity-60 w-full h-screen flex flex-col  items-center ">
+      <div className="bg-black bg-opacity-75 w-full h-screen flex flex-col  items-center ">
         <Header />
         <div className="w-6/12 h-64  flex justify-center items-center flex-col mt-40">
           <h1 className="text-7xl text-white w-full ">

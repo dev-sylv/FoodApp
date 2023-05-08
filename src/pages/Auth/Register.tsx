@@ -13,13 +13,13 @@ import { useMutation } from "@tanstack/react-query";
 const Register = () => {
   const userSchema = yup
     .object({
-      name: yup.string().required("please enter a name"),
-      email: yup.string().required("please enter an email"),
-      password: yup.string().required("please enter a password"),
+      name: yup.string().required("Please enter a name"),
+      email: yup.string().required("Please enter an email"),
+      password: yup.string().required("Please enter a password"),
       confirmPassword: yup
         .string()
-        .oneOf([yup.ref("password")], "passwords must match")
-        .required("please confirm your password"),
+        .oneOf([yup.ref("password")], "Passwords must match")
+        .required("Please confirm your password"),
     })
     .required();
   type formData = yup.InferType<typeof userSchema>;
@@ -37,18 +37,16 @@ const Register = () => {
   const dispatch = UseAppDispatch();
   const navigate = useNavigate();
 
-  const CurrentUser = useAppSelector((state: any) => state?.user);
-
   const CreateUser = useMutation({
     mutationKey: ["New user"],
     mutationFn: UsersRegistration,
 
     onSuccess: (res) => {
       dispatch(login(res.data.data));
-      // console.log(res.data.data);
+
       Swal.fire({
         title: "User registered sucessfully",
-        html: "redirecting to email",
+        html: "Redirecting to email",
         timer: 2000,
         timerProgressBar: true,
 
@@ -58,7 +56,7 @@ const Register = () => {
       }).catch(() => {
         Swal.fire({
           title: "Registration failed",
-          text: "Something went wrong! .....Make sure you did the right thing",
+          text: "Something went wrong!",
           icon: "error",
         });
       });
@@ -85,6 +83,9 @@ const Register = () => {
                 placeholder="Enter your name"
                 {...register("name")}
               />
+              <p className="text-red-500 text-xl italic">
+                {errors?.name && errors?.name?.message}
+              </p>
             </div>
 
             <div className="mb-4">
@@ -97,6 +98,9 @@ const Register = () => {
                 placeholder="Enter your email"
                 {...register("email")}
               />
+              <p className="text-red-500 text-xl italic">
+                {errors?.email && errors?.email?.message}
+              </p>
             </div>
 
             <div className="mb-6">
@@ -109,9 +113,9 @@ const Register = () => {
                 placeholder="Enter your password"
                 {...register("password")}
               />
-              {/* <p className="text-red-500 text-xs italic">
-                Please enter your password.
-              </p> */}
+              <p className="text-red-500 text-xl italic">
+                {errors?.password && errors?.password?.message}
+              </p>
             </div>
 
             <div className="mb-6">
@@ -124,9 +128,9 @@ const Register = () => {
                 placeholder="Confirm your password"
                 {...register("confirmPassword")}
               />
-              {/* <p className="text-red-500 text-xs italic">
-                Please enter your password.
-              </p> */}
+              <p className="text-red-500 text-xl italic">
+                {errors?.confirmPassword && errors?.confirmPassword?.message}
+              </p>
             </div>
 
             <div className="flex items-center justify-between">
