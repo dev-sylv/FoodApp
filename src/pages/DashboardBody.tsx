@@ -8,7 +8,7 @@ const DashboardBody = () => {
         <div className="bg-white w-2/5 h-2/4">
           <PieChart />
         </div>
-        <div className="bg-yellow-500 w-2/4 h-1/2">
+        <div className="bg-white w-2/4 h-1/2">
           <Barchat />
         </div>
       </div>
