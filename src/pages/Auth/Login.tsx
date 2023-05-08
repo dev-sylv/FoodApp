@@ -15,8 +15,8 @@ const Login = () => {
 
   const userSchema = yup
     .object({
-      email: yup.string().required("please enter an email"),
-      password: yup.string().required("please enter a password"),
+      email: yup.string().required("Please enter your email"),
+      password: yup.string().required("Please enter your password"),
     })
     .required();
   type formData = yup.InferType<typeof userSchema>;
@@ -31,7 +31,7 @@ const Login = () => {
   });
 
   const posting = useMutation({
-    mutationKey: ["current"],
+    mutationKey: ["current user"],
     mutationFn: UsersLogin,
 
     onSuccess: (myData) => {
@@ -55,7 +55,7 @@ const Login = () => {
     onError: (error: any) => {
       Swal.fire({
         title: "Registration failed",
-        text: "email or password incorrect",
+        text: "Email or password incorrect",
         icon: "error",
       });
     },
@@ -81,6 +81,9 @@ const Login = () => {
                 placeholder="Enter your email"
                 {...register("email")}
               />
+              <p className="text-red-500 text-xl italic">
+                {errors?.email && errors?.email?.message}
+              </p>
             </div>
             <div className="mb-6">
               <label className="block text-white text-sm font-bold mb-2">
@@ -92,9 +95,9 @@ const Login = () => {
                 placeholder="Enter your password"
                 {...register("password")}
               />
-              {/* <p className="text-red-500 text-xs italic">
-                Please enter your password.
-              </p> */}
+              <p className="text-red-500 text-xl italic">
+                {errors?.password && errors?.password?.message}
+              </p>
             </div>
             <div className="flex items-center justify-between">
               <button
@@ -103,12 +106,12 @@ const Login = () => {
                 Sign In
               </button>
 
-              <a
-                className="inline-block align-baseline font-bold text-base text-orange-500 hover:text-blue-800"
-                href="#">
+              <a className="inline-block align-baseline font-bold text-base hover:text-white text-white">
                 Forgot Password?{" "}
                 <NavLink to="/forget-password">
-                  <span className="text-white cursor-pointer">click here</span>
+                  <span className="text-white cursor-pointer text-xl">
+                    click here
+                  </span>
                 </NavLink>
               </a>
             </div>
@@ -116,7 +119,9 @@ const Login = () => {
           <p className="text-center text-white mt-5 text-lg">
             Don't have an account?{" "}
             <NavLink to="/register-user">
-              <span className="cursor-pointer">Sign up here</span>
+              <span className="cursor-pointer text-white text-xl">
+                Sign up here
+              </span>
             </NavLink>
           </p>
         </div>

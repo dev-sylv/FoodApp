@@ -73,7 +73,7 @@ const Register = () => {
         <h4 className="text-white font-bold text-4xl mb-5">Sign Up</h4>
         <div className="w-full max-w-xs" onSubmit={UserReg}>
           <form className=" ">
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-white text-sm font-bold mb-2">
                 Name
               </label>
@@ -88,7 +88,7 @@ const Register = () => {
               </p>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-white text-sm font-bold mb-2">
                 Email
               </label>
@@ -103,7 +103,7 @@ const Register = () => {
               </p>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-2">
               <label className="block text-white text-sm font-bold mb-2">
                 Password
               </label>
@@ -118,7 +118,7 @@ const Register = () => {
               </p>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-2">
               <label className="block text-white text-sm font-bold mb-2">
                 Confirm Password
               </label>
@@ -144,7 +144,9 @@ const Register = () => {
           <p className="text-center text-white mt-5 text-lg">
             Already have an account?{" "}
             <NavLink to="/login-user">
-              <span className="cursor-pointer">Login here</span>
+              <span className="cursor-pointer text-white text-xl">
+                Login here
+              </span>
             </NavLink>
           </p>
         </div>
