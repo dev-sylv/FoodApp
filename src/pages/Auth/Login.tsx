@@ -66,9 +66,9 @@ const Login = () => {
   });
 
   return (
-    <div className="w-full h-screen bg-green-500 flex justify-center items-center">
+    <div className="w-full h-screen bg-white flex justify-center items-center">
       <div className="border shadow-2xl py-10 flex flex-col justify-center items-center w-6/12">
-        <h4 className="text-white font-bold text-4xl mb-5">Login</h4>
+        <h4 className="text-green-500 font-bold text-4xl mb-5">Login</h4>
         <div className="w-full max-w-xs" onSubmit={Submit}>
           <form className=" ">
             <div className="mb-4">
@@ -106,20 +106,20 @@ const Login = () => {
                 Sign In
               </button>
 
-              <a className="inline-block align-baseline font-bold text-base hover:text-white text-white">
+              <a className="inline-block align-baseline font-bold text-base hover:text-orange-500 text-green-500">
                 Forgot Password?{" "}
                 <NavLink to="/forget-password">
-                  <span className="text-white cursor-pointer text-xl">
+                  <span className="text-orange-500 cursor-pointer text-xl">
                     click here
                   </span>
                 </NavLink>
               </a>
             </div>
           </form>
-          <p className="text-center text-white mt-5 text-lg">
+          <p className="text-center text-green-500 mt-5 text-lg">
             Don't have an account?{" "}
             <NavLink to="/register-user">
-              <span className="cursor-pointer text-white text-xl">
+              <span className="cursor-pointer text-orange-500 text-xl">
                 Sign up here
               </span>
             </NavLink>

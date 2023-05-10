@@ -2,7 +2,7 @@ import React from "react";
 
 const RedirectToEmail = () => {
   return (
-    <div className="w-full h-screen bg-green-500 flex justify-center items-center">
+    <div className="w-full h-screen bg-white flex justify-center items-center">
       <div className="w-2/5 flex justify-center items-center shadow-2xl bg-white h-72">
         <div className="w-4/5 flex items-center flex-col h-64">
           <h1 className="text-green-500">

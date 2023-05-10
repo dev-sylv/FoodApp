@@ -68,9 +68,9 @@ const Register = () => {
   });
 
   return (
-    <div className="w-full h-screen bg-green-500 flex justify-center items-center">
+    <div className="w-full h-screen bg-white flex justify-center items-center">
       <div className="border shadow-2xl py-10 flex flex-col justify-center items-center w-6/12">
-        <h4 className="text-white font-bold text-4xl mb-5">Sign Up</h4>
+        <h4 className="text-green-500 font-bold text-4xl mb-5">Sign Up</h4>
         <div className="w-full max-w-xs" onSubmit={UserReg}>
           <form className=" ">
             <div className="mb-2">
@@ -141,10 +141,10 @@ const Register = () => {
               </button>
             </div>
           </form>
-          <p className="text-center text-white mt-5 text-lg">
+          <p className="text-center text-green-500 mt-5 text-lg">
             Already have an account?{" "}
             <NavLink to="/login-user">
-              <span className="cursor-pointer text-white text-xl">
+              <span className="cursor-pointer text-orange-500 text-xl">
                 Login here
               </span>
             </NavLink>
